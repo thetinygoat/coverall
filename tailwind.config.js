@@ -1,8 +1,15 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: ['./**/*.js'],
+  },
   theme: {
     extend: {},
   },
   variants: {},
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
 };
