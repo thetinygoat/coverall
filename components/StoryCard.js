@@ -9,7 +9,9 @@ const StoryCard = ({
     <div className="col-start-2 col-span-10 py-4">
       <div className="grid grid-cols-12">
         <Link href={{ pathname: `/story/${title}`, query: { url } }}>
-          <h2 className="font-bold text-lg col-span-7 cursor-pointer">{title}</h2>
+          <a target="_blank" className="col-span-7">
+            <h2 className="font-bold text-lg cursor-pointer">{title}</h2>
+          </a>
         </Link>
         <div
           style={{
