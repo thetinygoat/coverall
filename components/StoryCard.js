@@ -1,13 +1,11 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { ceil } from 'lodash';
-import predict from '../api/predict';
+import { useState } from "react";
+import Link from "next/link";
+import { ceil } from "lodash";
+import predict from "../api/predict";
 
-const StoryCard = ({
-  author, title, description, url, img, time,
-}) => {
+const StoryCard = ({ author, title, description, url, img, time }) => {
   const [loading, setloading] = useState(false);
-  const [trust, settrust] = useState('');
+  const [trust, settrust] = useState("");
   async function handleAuthCheck() {
     setloading(true);
     const data = await predict(url);
@@ -16,11 +14,12 @@ const StoryCard = ({
   }
   function calcClassName(score) {
     if (1 - score < 0.3) {
-      return 'bg-red-400 mt-2 p-2 rounded-sm text-2xl font-bold';
-    } if (1 - score >= 0.3 && 1 - score <= 0.7) {
-      return 'bg-yellow-400 mt-2 p-2 rounded-sm text-2xl font-bold';
+      return "bg-red-400 mt-2 p-4 rounded-sm text-2xl font-bold";
     }
-    return 'bg-green-400 mt-2 p-2 rounded-sm text-2xl font-bold';
+    if (1 - score >= 0.3 && 1 - score <= 0.7) {
+      return "bg-yellow-400 mt-2 p-4 rounded-sm text-2xl font-bold";
+    }
+    return "bg-green-400 mt-2 p-4 rounded-sm text-2xl font-bold";
   }
   return (
     <div className="col-start-2 col-span-10 py-4">
@@ -33,29 +32,27 @@ const StoryCard = ({
         <div
           style={{
             backgroundImage: `url(${img})`,
-            width: '95px',
-            height: '95px',
-            backgroundSize: 'cover',
+            width: "150px",
+            height: "150px",
+            backgroundSize: "cover",
           }}
           className="rounded-sm col-start-9"
         />
       </div>
       <button
         type="button"
-        className="w-1/2 mt-2 bg-black p-1 rounded-sm text-white"
+        className="w-1/5 mt-2 bg-blue-600 p-4 rounded-sm text-white"
         onClick={() => handleAuthCheck()}
       >
-        Check Authenticity
-
+        Get a trust score
       </button>
       {loading ? (
         <div className="bg-gray-400 mt-2 p-2 rounded-sm">
           Calculating trust score...
         </div>
-      ) : trust && trust != '' ? (
+      ) : trust && trust != "" ? (
         <div className={calcClassName(trust)}>
-          {100 - ceil(parseFloat(trust) * 100)}
-          % trusted
+          {100 - ceil(parseFloat(trust) * 100)}% trusted
         </div>
       ) : null}
     </div>

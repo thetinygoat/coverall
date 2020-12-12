@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 
-const SearchCard = ({
-  author, title, description, url, img, time,
-}) => (
+const SearchCard = ({ author, title, description, url, img, time }) => (
   <div className="col-start-2 col-span-10 py-4">
     <div className="grid grid-cols-12">
       <Link href={{ pathname: `/story/${title}`, query: { url } }}>
@@ -14,9 +12,9 @@ const SearchCard = ({
       <div
         style={{
           backgroundImage: `url(${img})`,
-          width: '95px',
-          height: '95px',
-          backgroundSize: 'cover',
+          width: "150px",
+          height: "150px",
+          backgroundSize: "cover",
         }}
         className="rounded-sm col-start-9"
       />
