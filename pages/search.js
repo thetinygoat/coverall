@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { debounce } from 'lodash';
-import Layout from '../components/Layout';
-import searchUtil from '../api/search';
-import SearchCard from '../components/SearchCard';
+import { useState } from "react";
+import { debounce } from "lodash";
+import Layout from "../components/Layout";
+import searchUtil from "../api/search";
+import SearchCard from "../components/SearchCard";
 
 const search = () => {
   const [results, setResults] = useState([]);
@@ -35,18 +35,25 @@ const search = () => {
           placeholder="Search for topics"
           onChange={debounceSearch(handleSearch, 500)}
         />
-        {loading ? <div className="text-2xl font-black pt-2 pb-4">loading....</div> : results.length > 0 && <h1 className="text-2xl font-black pt-2 pb-4">Search Results</h1>}
-        {results && results.map((article) => (
-          <SearchCard
-            author={article.author}
-            title={article.title}
-            description={article.description}
-            url={article.url}
-            img={article.urlToImage}
-            time={article.publishedAt}
-            key={article.title}
-          />
-        ))}
+        {loading ? (
+          <div className="text-2xl font-black pt-2 pb-4">Loading....</div>
+        ) : (
+          results.length > 0 && (
+            <h1 className="text-2xl font-black pt-2 pb-4">Search Results</h1>
+          )
+        )}
+        {results &&
+          results.map((article) => (
+            <SearchCard
+              author={article.author}
+              title={article.title}
+              description={article.description}
+              url={article.url}
+              img={article.urlToImage}
+              time={article.publishedAt}
+              key={article.title}
+            />
+          ))}
       </div>
     </Layout>
   );

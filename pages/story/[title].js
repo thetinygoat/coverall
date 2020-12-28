@@ -8,12 +8,12 @@ import predict from "../../api/predict";
 const Story = ({ url, content, title, score }) => {
   function calcClassName() {
     if (1 - score < 0.3) {
-      return "bg-red-400 mt-2 p-4 mb-2 rounded-sm text-2xl font-bold col-start-2 col-span-10";
+      return "bg-red-400 mt-2 p-2 mb-2 rounded-sm text-center text-2xl font-bold col-start-1 col-span-12";
     }
     if (1 - score >= 0.3 && 1 - score <= 0.7) {
-      return "bg-yellow-400 mt-2 p-4 mb-2 rounded-sm text-2xl font-bold col-start-2 col-span-10";
+      return "bg-yellow-400 mt-2 p-2 mb-2 rounded-sm text-center text-2xl font-bold col-start-1 col-span-12";
     }
-    return "bg-green-400 mt-2 p-4 mb-2rounded-sm text-2xl font-bold col-start-2 col-span-10";
+    return "bg-green-400 mt-2 p24 mb-2rounded-sm text-center text-2xl font-bold col-start-1 col-span-12";
   }
   return (
     <Layout>
